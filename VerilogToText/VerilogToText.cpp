@@ -151,45 +151,46 @@ int main() {
     inputFile.close();
 
     // Print extracted module information with numbers
-    std::cout << "Modules: " << std::endl;
-    std::cout << "--------------------------------------------" << std::endl;
-    std::cout << "Module Name: " << currentModule.name << std::endl;
-    std::cout << "Inputs: ";
-    for (const auto& input : currentModule.inputs) {
-        std::cout << input << "(" << signalNumbers[input] << ") ";
-    }
-    std::cout << std::endl;
-
-    std::cout << "Outputs: ";
-    for (const auto& output : currentModule.outputs) {
-        std::cout << output << "(" << signalNumbers[output] << ") ";
-    }
-    std::cout << std::endl;
-
-    std::cout << "Wires: ";
-    for (const auto& wire : currentModule.wires) {
-        std::cout << wire << "(" << signalNumbers[wire] << ") ";
-    }
-    std::cout << std::endl;
-
-    std::cout << "--------------------------------------------" << std::endl;
-
+    // std::cout << "Modules: " << std::endl;
+   
+   // std::cout << "Module Name: " << currentModule.name << std::endl;
+      
     // Print extracted gate information with numbers
-    std::cout << "Gate Information: " << std::endl;
-    std::cout << "--------------------------------------------" << std::endl;
+    //std::cout << "Gate Information: " << std::endl;
+   
     for (const auto& gate : gates) {
-        std::cout << "Gate Type: " << gate.type << std::endl;
+        std::cout << gate.type << " ";
         if (!gate.input2.empty()) {
-            std::cout << "Input 1: " << gate.input1 << " ";
-            std::cout << "Input 2: " << gate.input2 << " ";
+            std::cout << gate.input1 << " "; //input 1
+            std::cout << gate.input2 << " "; //input 2
         }
         else {
-            std::cout << "Input: " << gate.input1 << " ";
+            std::cout << gate.input1 << " "; //for NOT Gate
         }
-        std::cout << "Output: " << gate.output << " " << std::endl;
-        std::cout << std::endl;
+        std::cout << gate.output << " " << std::endl; //output
+        //std::cout << std::endl;
     }
-    std::cout << "--------------------------------------------" << std::endl;
+    
+
+    // print input and outputs
+    std::cout << "INPUT ";
+    for (const auto& input : currentModule.inputs) {
+        std::cout << " " << signalNumbers[input];
+    }
+    std::cout << " -1";
+   
+
+    std::cout << "\nOUTPUT ";
+    for (const auto& output : currentModule.outputs) {
+        std::cout << " " << signalNumbers[output];
+    }
+    std::cout << " -1" << std::endl; 
+    
+    //std::cout << "Wires: ";
+    //for (const auto& wire : currentModule.wires) {
+    //    std::cout << wire << "(" << signalNumbers[wire] << ") ";
+    //}
+    //std::cout << std::endl;
 
     return 0;
 }
