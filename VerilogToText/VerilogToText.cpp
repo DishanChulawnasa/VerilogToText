@@ -5,31 +5,35 @@
 #include <sstream>
 #include <map>
 
+using namespace std;
+
 struct Gate {
-    std::string type;
-    std::string input1;
-    std::string input2;
-    std::string output;
+    string type;
+    string input1;
+    string input2;
+    string output;
 };
 
 struct Module {
-    std::string name;
-    std::vector<std::string> inputs;
-    std::vector<std::string> outputs;
-    std::vector<std::string> wires;
+    string name;
+    vector<string> inputs;
+    vector<string> outputs;
+    vector<string> wires;
 };
 
+string inputVerilogFileDirectory = "C:/Users/dishan/source/repos/VerilogToText/VerilogToText/ADDER_syn.v";
+
 int main() {
-    std::ifstream inputFile("ADDER_syn.v");
+    ifstream inputFile(inputVerilogFileDirectory);
 
     // Check if the file is open
-    if (!inputFile.is_open()) {
-        std::cerr << "Error opening the input file." << std::endl;
-        return 1;
-    }
+    //if (!inputFile.is_open()) {
+    //    std::cerr << "Error opening the input file." << std::endl;
+    //    return 1;
+    //}
 
-    std::string line;
-    std::vector<Gate> gates;
+    string line;
+    vector<Gate> gates;
     Gate currentGate;
     Module currentModule;
     bool inModule = false;
@@ -201,6 +205,7 @@ int main() {
     //    std::cout << wire << "(" << signalNumbers[wire] << ") ";
     //}
     //std::cout << std::endl;
+    veriToText.close();
 
     return 0;
 }
