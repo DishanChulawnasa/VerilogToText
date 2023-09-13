@@ -20,7 +20,7 @@ struct Module {
 };
 
 int main() {
-    std::ifstream inputFile("MUX32_Syn.v");
+    std::ifstream inputFile("ADDER_syn.v");
 
     // Check if the file is open
     if (!inputFile.is_open()) {
@@ -150,40 +150,50 @@ int main() {
     // Closing the input file
     inputFile.close();
 
-    // Print extracted module information with numbers
-    // std::cout << "Modules: " << std::endl;
-   
-   // std::cout << "Module Name: " << currentModule.name << std::endl;
+    std::ofstream veriToText("Circuit.txt");
       
     // Print extracted gate information with numbers
     //std::cout << "Gate Information: " << std::endl;
    
     for (const auto& gate : gates) {
+        veriToText << gate.type << " ";
         std::cout << gate.type << " ";
         if (!gate.input2.empty()) {
+            veriToText << gate.input1 << " ";
+            veriToText << gate.input2 << " ";
+            
             std::cout << gate.input1 << " "; //input 1
             std::cout << gate.input2 << " "; //input 2
         }
         else {
+            veriToText << gate.input1 << " ";
             std::cout << gate.input1 << " "; //for NOT Gate
         }
+        
+        veriToText << gate.input1 << " ";
         std::cout << gate.output << " " << std::endl; //output
+        veriToText << "\n";
         //std::cout << std::endl;
     }
     
 
     // print input and outputs
+    veriToText << "INPUT";
     std::cout << "INPUT ";
     for (const auto& input : currentModule.inputs) {
+        veriToText << " " << signalNumbers[input];
         std::cout << " " << signalNumbers[input];
     }
+    veriToText << " -1";
     std::cout << " -1";
    
-
+    veriToText << "\nOUTPUT ";
     std::cout << "\nOUTPUT ";
     for (const auto& output : currentModule.outputs) {
+        veriToText << " " << signalNumbers[output];
         std::cout << " " << signalNumbers[output];
     }
+    veriToText << " -1";
     std::cout << " -1" << std::endl; 
     
     //std::cout << "Wires: ";
