@@ -151,9 +151,9 @@ int main() {
     inputFile.close();
 
     // Print extracted module information with numbers
-    // std::cout << "Modules: " << std::endl;
-    // std::cout << "--------------------------------------------" << std::endl;
-    // std::cout << "Module Name: " << currentModule.name << std::endl;
+    std::cout << "Modules: " << std::endl;
+    std::cout << "--------------------------------------------" << std::endl;
+    std::cout << "Module Name: " << currentModule.name << std::endl;
     std::cout << "Inputs: ";
     for (const auto& input : currentModule.inputs) {
         std::cout << input << "(" << signalNumbers[input] << ") ";
